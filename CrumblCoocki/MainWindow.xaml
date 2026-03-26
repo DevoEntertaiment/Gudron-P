@@ -1,0 +1,89 @@
+﻿<Window x:Class="MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Gudron Plant Calculator - Grow A Garden" Height="700" Width="800"
+        WindowStartupLocation="CenterScreen">
+
+    <ScrollViewer>
+        <StackPanel Margin="20">
+            <!-- Header -->
+            <TextBlock Text="🌱 GUDRON PLANT CALCULATOR 🌱" 
+                       FontSize="24" FontWeight="Bold" 
+                       Foreground="#2E8B57" 
+                       HorizontalAlignment="Center" Margin="10"/>
+            <TextBlock Text="Grow A Garden Value Calculator" 
+                       FontSize="16" Foreground="#666" 
+                       HorizontalAlignment="Center" Margin="0,0,0,20"/>
+
+            <!-- Plant Selection -->
+            <GroupBox Header="🌿 Выбор растения" FontSize="16" FontWeight="Bold" Margin="0,10">
+                <StackPanel>
+                    <Label Content="Введите название растения:" FontSize="14" FontWeight="SemiBold"/>
+                    <TextBox x:Name="PlantNameTextBox" FontSize="14" Padding="8" Margin="5"
+                             TextChanged="PlantNameTextBox_TextChanged"/>
+                    <ListBox x:Name="PlantSuggestionsListBox" MaxHeight="150" Visibility="Collapsed"
+                             SelectionChanged="PlantSuggestionsListBox_SelectionChanged"/>
+                </StackPanel>
+            </GroupBox>
+
+            <!-- Weight Input -->
+            <GroupBox Header="⚖️ Вес растения" FontSize="16" FontWeight="Bold" Margin="0,10">
+                <StackPanel>
+                    <Label Content="Введите вес растения (кг):" FontSize="14" FontWeight="SemiBold"/>
+                    <TextBox x:Name="WeightTextBox" FontSize="14" Padding="8" Margin="5"/>
+                </StackPanel>
+            </GroupBox>
+
+            <!-- Growth Mutations -->
+            <GroupBox Header="🌟 Мутации роста" FontSize="16" FontWeight="Bold" Margin="0,10">
+                <StackPanel>
+                    <Label Content="Выберите мутацию роста:" FontSize="14" FontWeight="SemiBold"/>
+                    <ComboBox x:Name="GrowthMutationComboBox" FontSize="14" Padding="8" Margin="5">
+                        <ComboBoxItem Content="Nona (x1)" Tag="1" IsSelected="True"/>
+                        <ComboBoxItem Content="Gold (x20)" Tag="20"/>
+                        <ComboBoxItem Content="Rainbow (x50)" Tag="50"/>
+                    </ComboBox>
+                </StackPanel>
+            </GroupBox>
+
+            <!-- Environmental Mutations -->
+            <GroupBox Header="🌍 Мутации окружающей среды" FontSize="16" FontWeight="Bold" Margin="0,10">
+                <StackPanel>
+                    <Label Content="Введите мутации через запятую:" FontSize="14" FontWeight="SemiBold"/>
+                    <TextBox x:Name="EnvironmentalMutationsTextBox" FontSize="14" Padding="8" Margin="5"/>
+                    <TextBlock Text="Доступные: wet, windstruck, moonlit, chilled, bloodlit, twisted, frozen, shocked, celestial, choc, pollinated, burnt, verdant, honeyglazed, plasma, heavenly, cooked, zombified, molten, sundried, alienlike, galactic, disco, voidtouched, dawnbound"
+                               FontSize="11" Foreground="#666" TextWrapping="Wrap" Margin="5"/>
+                </StackPanel>
+            </GroupBox>
+
+            <!-- Calculate Button -->
+            <Button Content="🧮 РАССЧИТАТЬ СТОИМОСТЬ" x:Name="CalculateButton" 
+                    FontSize="16" FontWeight="Bold" Background="#4CAF50" Foreground="White"
+                    Padding="15,10" Margin="10" Click="CalculateButton_Click"
+                    HorizontalAlignment="Center"/>
+
+            <!-- Results -->
+            <Border x:Name="ResultsBorder" Background="#F0F8FF" BorderBrush="#4169E1" 
+                    BorderThickness="2" CornerRadius="5" Padding="15" Margin="10"
+                    Visibility="Collapsed">
+                <StackPanel>
+                    <TextBlock Text="📊 Результаты расчета" FontSize="18" FontWeight="Bold" 
+                               Foreground="#4169E1" Margin="0,0,0,15"/>
+                    <StackPanel x:Name="ResultsPanel"/>
+
+                    <!-- Final Price -->
+                    <Border x:Name="FinalPriceBorder" Background="#FFD700" BorderBrush="#FF8C00" 
+                            BorderThickness="3" CornerRadius="10" Padding="20" Margin="15"
+                            Visibility="Collapsed">
+                        <TextBlock x:Name="FinalPriceTextBlock" FontSize="20" FontWeight="Bold" 
+                                   Foreground="#B8860B" HorizontalAlignment="Center"/>
+                    </Border>
+                </StackPanel>
+            </Border>
+
+            <!-- Error Messages -->
+            <TextBlock x:Name="ErrorTextBlock" Foreground="Red" FontWeight="Bold" 
+                       TextWrapping="Wrap" Visibility="Collapsed" Margin="10"/>
+        </StackPanel>
+    </ScrollViewer>
+</Window>
